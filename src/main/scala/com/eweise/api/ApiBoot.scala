@@ -7,19 +7,19 @@ import com.typesafe.config.ConfigFactory
 import spray.can.Http
 import scala.concurrent.duration
 import duration._
-object ApiBoot {
+object ApiBoot extends App {
 
   implicit val timeout = Timeout(10 seconds)
 
-  val config = ConfigFactory.parseString("akka.remote.netty.tcp.port=2551").withFallback(ConfigFactory.load)
+  val config = ConfigFactory.parseString("akka.remote.netty.tcp.port=2551").withFallback(ConfigFactory.load())
 
   /**
    * All actors that want to belong to the same cluster need to use the same
    * ActorSystem name
    */
-  implicit val actorSystem = ActorSystem("cluster-example")
+  implicit val actorSystem = ActorSystem("cluster-example", config)
 
   val apiRoutes = actorSystem.actorOf(Props[ApiRouteActor], "api-routes")
 
-  IO(Http) ! Http.Bind(apiRoutes, interface = "localhost", port=8080)
+  IO(Http) ! Http.Bind(apiRoutes, interface = "localhost", port=8085)
 }

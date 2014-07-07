@@ -16,7 +16,7 @@ object MicroserviceBoot extends App {
   val config = ConfigFactory.parseString(s"akka.remote.netty.tcp.port=${args(0)}").withFallback(ConfigFactory.load)
 
   implicit val actorSystem = ActorSystem("cluster-example", config)
-
   actorSystem.actorOf(Props[MicroserviceActor], "microservice")
+
 
 }

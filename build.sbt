@@ -8,8 +8,6 @@ scalacOptions := Seq("-unchecked", "-deprecation", "-encoding", "utf8")
 
 resolvers += "Spray.io" at "http://repo.spray.io"
 
-resolvers += "rediscala" at "http://dl.bintray.com/etaty/maven"
-
 libraryDependencies ++= {
   val akkaV = "2.3.3"
   val sprayV = "1.3.1-20140423"
