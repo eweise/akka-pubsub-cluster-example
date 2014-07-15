@@ -19,7 +19,7 @@ object ApiBoot extends App {
    */
   implicit val actorSystem = ActorSystem("cluster-example", config)
 
-  val apiRoutes = actorSystem.actorOf(Props[ApiRouteActor], "api-routes")
+  val apiRoutes = actorSystem.actorOf(Props[WebServiceActor], "api-routes")
 
   IO(Http) ! Http.Bind(apiRoutes, interface = "localhost", port=8085)
 }
