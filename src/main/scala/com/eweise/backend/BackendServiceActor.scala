@@ -11,13 +11,7 @@ case object PerformWork extends Message
 
 case object OK extends Message
 
-/**
- * This actor represents some service running in a cluster.
- */
 class BackendServiceActor extends Actor with ActorLogging {
-
-  import akka.contrib.pattern.DistributedPubSubMediator.{Subscribe, SubscribeAck}
-  import context._
 
   val mediator = DistributedPubSubExtension(context.system).mediator
 

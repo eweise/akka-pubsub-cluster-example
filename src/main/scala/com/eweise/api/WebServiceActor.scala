@@ -11,10 +11,6 @@ import scala.concurrent.ExecutionContext
 import scala.concurrent.duration._
 import scala.util.{Failure, Success}
 
-/**
- * Defines the HTTP endpoints
- */
-
 class WebServiceActor extends Actor with HttpService {
   implicit val timeout = Timeout(10 seconds)
 
