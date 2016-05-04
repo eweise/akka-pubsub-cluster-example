@@ -13,10 +13,9 @@ object BackendServiceBoot extends App {
 
   implicit val timeout = Timeout(10 seconds)
 
-  val config = ConfigFactory.parseString(s"akka.remote.netty.tcp.port=${args(0)}").withFallback(ConfigFactory.load)
+  val config = ConfigFactory.parseString(s"akka.remote.netty.tcp.port=${args(0)}")
+    .withFallback(ConfigFactory.load())
 
   implicit val actorSystem = ActorSystem("cluster-example", config)
   actorSystem.actorOf(Props[BackendServiceActor], "backend-service")
-
-
 }
